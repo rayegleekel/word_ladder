@@ -28,6 +28,8 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     Whenever it is impossible to generate a word ladder between the two words,
     the function returns `None`.
     '''
+    if start_word == end_word:
+        return [start_word]
 
     word_file = open(dictionary_file, "r")
     words = []
@@ -64,6 +66,9 @@ def verify_word_ladder(ladder):
     >>> verify_word_ladder(['dog', 'fog', 'bog','hog'])
     True
     '''
+    if not ladder:
+        return False
+
     position = 0
 
     while position < (len(ladder) - 2):
