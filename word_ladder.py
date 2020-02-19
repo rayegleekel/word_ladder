@@ -69,19 +69,9 @@ def verify_word_ladder(ladder):
     if not ladder:
         return False
 
-    position = 0
-
-    while position < (len(ladder) - 2):
-        
-        first_word = ladder[position]
-        second_word = ladder[position + 1]
-        status =  _adjacent(first_word, second_word)
-        
-        if status:
-            position += 1
-        else: 
+    for i in range(len(ladder)-1):
+        if not _adjacent(ladder[i], ladder[i+1]):
             return False
-
     return True
 
 def _adjacent(word1, word2):
@@ -107,4 +97,5 @@ def _adjacent(word1, word2):
 
     return False
 
-print(word_ladder('angel', 'child'))
+print(verify_word_ladder(['stone', 'shone', 'phone', 'phony', 'peony', 'penny', 'benny', 'bonny', 'money']))
+
