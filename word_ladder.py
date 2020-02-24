@@ -46,11 +46,9 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
 
     que.appendleft(word_ladder)
     
-    words_copy = copy.copy(words)
-
     while que:
         current_stack = que.pop()
-        for word in words_copy:
+        for word in set(words):
             if _adjacent(current_stack[-1], word):
                 if word == end_word:
                     current_stack.append(word)
