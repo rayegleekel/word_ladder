@@ -1,5 +1,6 @@
 #!/bin/python3
-import collections 
+import collections
+import copy
 
 def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     '''
@@ -44,10 +45,12 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     que = collections.deque()
 
     que.appendleft(word_ladder)
+    
+    words_copy = copy.copy(words)
 
     while que:
         current_stack = que.pop()
-        for word in words:
+        for word in words_copy:
             if _adjacent(current_stack[-1], word):
                 if word == end_word:
                     current_stack.append(word)
@@ -55,8 +58,11 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
                 stack_copy = current_stack.copy()
                 stack_copy.append(word)
                 que.appendleft(stack_copy)
-
-                words.remove(word)
+                
+                try:
+                    words.remove(word)
+                except ValueError:
+                    pass
 
 
 def verify_word_ladder(ladder):
